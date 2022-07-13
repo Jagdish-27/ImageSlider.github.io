@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osm Web Page</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        #hero{
+            width: 100%;
+            height: 100vh;
+            background-image: url(Radiance_img/bg1.png);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .navbar{
+            width: 90%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+        .navbar .logo{
+            width: 60px;
+            margin: 30px 0;
+            cursor: pointer;
+        }
+        .user{
+            display: flex;
+            align-items: center;
+        }
+        .user img{
+            width: 30px;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+        button{
+            padding: 8px 25px;
+            margin-right: 40px;
+            background: transparent;
+            outline: none;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .container{
+            width: 50%;
+            height: 100vh;
+            background: rgba(86, 86, 86, 0.3);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .info{
+            width: 550px;
+            color: #fff;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .info h1{
+            font-size: 60px;
+            letter-spacing: 10px;
+        }
+        .info p{
+            color: #f0eef1;
+            font-size: 11px;
+            margin: 20px 0;
+            line-height: 18px;
+        }
+        .info input{
+            width: 50%;
+            padding: 8px 10px;
+            outline: none;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            background: transparent;
+            color: #fff;
+            font-size: 12px;
+        }
+        ::placeholder{
+            color: #ccc;
+        }
+        .slider{
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 30px;
+            bottom: 50px;
+        }
+        #prev, #next{
+            width: 20px;
+            cursor: pointer;
+        }
+        .preview{
+            display: flex;
+            align-items: center;
+            margin: 0 60px;
+        }
+        .preview img{
+            width: 60px;
+            margin: 0 10px;
+            opacity: 0.4;
+        }
+        .preview .active{
+            display: block;
+            border: 3px solid #fff;
+            width: 100px;
+            opacity: 1;
+        }
+
+        @media(min-width: 320px)and (max-width: 468px){
+            .navbar .logo {
+            width: 40px;
+            margin: 30px 0;
+            }
+            button {
+            padding: 2px 8px;
+            margin-right: 20px;
+            }
+            .navbar .logo {
+            width: 30px;
+            margin: 30px 0;
+            }
+            .info {
+            width: 146px;
+            }
+            .info h1 {
+            font-size: 19px;
+            letter-spacing: 3px;
+            }
+            
+            .info input {
+            width: 40%;
+            padding: 6px 10px;
+            font-size: 11px;
+            }
+            .slider {
+            display: flex;
+            align-items: center;
+            right: 18px;
+            }       
+            #prev, #next {
+            width: 15px;
+            }
+            .preview {
+            display: flex;
+            align-items: center;
+            margin: 0 -4px;
+            }
+            .preview .active {
+            display: block;
+            width: 35px;
+            opacity: 1;
+            }
+            .preview img {
+            width: 33px;
+            margin: 0 10px;
+            opacity: 0.4;
+            }
+
+        }
+
+        @media(min-width: 469px)and (max-width: 890px){
+            .navbar .logo {
+            width: 47px;
+            margin: 30px 0;
+            }
+            button {
+            padding: 6px 22px;
+            margin-right: 20px;
+            }
+            .navbar .logo {
+            width: 48px;
+            margin: 30px 0;
+            }
+            .info {
+            width: 216px;
+            }
+            .info h1 {
+            font-size: 25px;
+            letter-spacing: 3px;
+            }
+            
+            .info input {
+            width: 40%;
+            padding: 9px 10px;
+            font-size: 12px;
+            }
+            .slider {
+            display: flex;
+            align-items: center;
+            right: 18px;
+            }       
+            #prev, #next {
+            width: 25px;
+            }
+            .preview {
+            display: flex;
+            align-items: center;
+            margin: 0 35px;
+            }
+            .preview .active {
+            display: block;
+            width: 47px;
+            opacity: 1;
+            }
+            .preview img {
+            width: 42px;
+            margin: 0 10px;
+            opacity: 0.4;
+            }   
+        }
+
+        @media(min-width: 891px)and (max-width: 1024px){
+            button {
+            padding: 10px 35px;
+            margin-right: 35px;
+            }
+            .navbar .logo {
+            width: 55px;
+            margin: 30px 0;
+            }
+            .info {
+            width: 405px;
+            }
+            .info h1 {
+            font-size: 30px;
+            letter-spacing: 8px;
+            }
+            
+            .info input {
+            width: 40%;
+            padding: 10px 10px;
+            font-size: 13px;
+            }
+            .slider {
+            display: flex;
+            align-items: center;
+            right: 3px;
+            }       
+            #prev, #next {
+            width: 25px;
+            }
+            .preview {
+            display: flex;
+            align-items: center;
+            margin: 0 0px;
+            }
+            .preview .active {
+            display: block;
+            width: 75px;
+            opacity: 1;
+            }
+            .preview img {
+            width: 68px;
+            margin: 0 5px;
+            opacity: 0.4;
+            }  
+        }
+
+    </style>
+</head>
+<body>
+    <div id="hero">
+        <div class="navbar">
+            <img src="Radiance_img/logo.png" class="logo">
+            <div class="user">
+                <button type="button" id="btn">Explore</button>
+            <img src="Radiance_img/user.png" class="logo">               
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="info">
+                <h1>DISCOVER</h1>
+                <P>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,  omnis, est hic <br> quos repudiandae minus ad possimus.</P>
+                <input type="text" placeholder="Search">
+            </div>
+        </div>
+
+        <div class="slider">
+            <img src="Radiance_img/left-arrow.png" id="prev">
+            <div class="preview">
+            <img src="Radiance_img/small1.png" class="active thumbnail">
+            <img src="Radiance_img/small2.png" class="thumbnail">
+            <img src="Radiance_img/small3.png" class="thumbnail">
+            <img src="Radiance_img/small4.png" class="thumbnail">
+            <img src="Radiance_img/small5.png" class="thumbnail">
+            </div>
+            <img src="Radiance_img/right-arrow.png" id="next">
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        // var prev = document.getElementById("prev");
+        // var next = document.getElementById("next");
+        // var thumbnail = document.getElementsByClassName("thumbnail");
+        // var hero = document.getElementById("hero");
+
+        // var backgroundImg = new Array(
+        //     "Radiance_img/bg1.png",
+        //     "Radiance_img/bg2.png",
+        //     "Radiance_img/bg3.png",
+        //     "Radiance_img/bg4.png",
+        //     "Radiance_img/bg5.png",
+
+        // );
+
+        // let i = 0;
+
+        // next.onclick = function(){
+        //     if(i < 4){
+        //     hero.style.backgroundImage = 'url("'+backgroundImg[i+1]+'")'
+        //     thumbnail[i+1].classList.add("active");
+        //     thumbnail[i].classList.remove("active");
+        //     i++;
+        //     }
+        // }
+
+        // prev.onclick = function(){
+        //     if(i > 0){
+        //     hero.style.backgroundImage = 'url("'+backgroundImg[i-1]+'")'
+        //     thumbnail[i-1].classList.add("active");
+        //     thumbnail[i].classList.remove("active");
+        //     i--;
+        //     }
+        // }
+
+
+
+        var prev = document.getElementById("prev");
+        var next = document.getElementById("next");
+        var thumbnail = document.getElementsByClassName("thumbnail");
+        var hero = document.getElementById("hero");
+        var btn = document.getElementById("btn");
+
+        var backgroundImg = new Array(
+            "Radiance_img/bg1.png",
+            "Radiance_img/bg2.png",
+            "Radiance_img/bg3.png",
+            "Radiance_img/bg4.png",
+            "Radiance_img/bg5.png",
+
+        );
+
+        let i = 0;
+
+        next.onclick = function(){
+            if(i < 4){
+                hero.style.backgroundImage = 'url("'+ backgroundImg[i + 1]+'")'
+                thumbnail[i + 1].classList.add("active");
+                thumbnail[i].classList.remove("active");
+                i++;
+            }
+        }
+
+        prev.onclick = function(){
+            if( i > 0){
+                hero.style.backgroundImage = 'url("'+backgroundImg[i - 1]+'")'
+                thumbnail[i - 1].classList.add("active");
+                thumbnail[i].classList.remove("active");
+                i--;
+            }
+        }
+
+        btn.onclick = function(){
+            btn.style.background = "black";
+        }
+
+    </script>
+
+</body>
+</html>
